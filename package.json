@@ -1,0 +1,23 @@
+{
+  "name": "ajv-error-parser",
+  "version": "1.0.2",
+  "description": "A proper error message parser for ajv schema validator errors",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": "rrkjonnapalli",
+  "license": "ISC",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rrkjonnapalli/ajv-error-parser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rrkjonnapalli/ajv-error-parser/issues"
+  },
+  "homepage": "https://github.com/rrkjonnapalli/ajv-error-parser#readme"
+}
