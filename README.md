@@ -3,7 +3,7 @@ A proper error message parser for ajv schema validator errors
 
 ## Methods
 ```javascript
-parseErrors(errros, opts)
+parseErrors(errors, opts)
 	opts:
 	style: boolean // default false
 ```
