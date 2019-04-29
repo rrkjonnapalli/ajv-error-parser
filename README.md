@@ -4,8 +4,9 @@ A proper error message parser for ajv schema validator errors
 ## Methods
 ```javascript
 parseErrors(errors, opts)
-	opts:
-	style: boolean // default false
+opts:
+    json: boolean // default true
+    delimiter: string // default '\n' used only if json=false
 ```
 
 
@@ -56,16 +57,39 @@ console.log(messages)
 ]
 ```
 
-
+### json
 
 ```javascript
-const messages = AJVErrorParser.parseErrors(errors, {style: true})
+const messages = AJVErrorParser.parseErrors(errors, {json: false})
 console.log(messages)
 
 //OUTPUT:
 
-<b>Message:</b>should not have additional properties 'k' in foo
+should not have additional properties 'k' in foo
+should have required property 'foo'
+```
+
+
+### delimiter
+It is the string to join messages
+
+>Syntax:
+>
+> {delimiter}{messages.join(delimiter)}
+
+```javascript
+const messages = AJVErrorParser.parseErrors(errors, {json: false, delimiter:`
 <br/>
-<b>Message:</b>should have required property 'foo'
+<b>Message:</b>
+`})
+console.log(messages)
+
+//OUTPUT:
+
 <br/>
+<b>Message:</b>
+should not have additional properties 'k' in foo
+<br/>
+<b>Message:</b>
+should have required property 'foo'
 ```

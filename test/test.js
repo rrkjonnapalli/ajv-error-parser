@@ -410,6 +410,11 @@ const errors = AJVErrorParser.parseErrors(
         data: { power: 40000 }
     }
     ]
-    , { style: false })
+    , { 
+        json: false
+        , delimiter:`
+<br/>
+<b>Message:</b>`
+     })
 
 console.log(errors)
