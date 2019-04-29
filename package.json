@@ -1,6 +1,6 @@
 {
   "name": "ajv-error-parser",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A proper error message parser for ajv schema validator errors",
   "main": "index.js",
   "scripts": {
