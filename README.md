@@ -1,5 +1,5 @@
 # ajv-error-parser
-A proper error message parser for ajv schema validator errors
+An error message parser for ajv schema validator errors
 
 ## Methods
 ```javascript
@@ -78,18 +78,14 @@ It is the string to join messages
 > {delimiter}{messages.join(delimiter)}
 
 ```javascript
-const messages = AJVErrorParser.parseErrors(errors, {json: false, delimiter:`
-<br/>
-<b>Message:</b>
-`})
+const messages = AJVErrorParser.parseErrors(errors, {
+    json: false,
+    delimiter:'\n<br/><b>Message:</b>'
+})
 console.log(messages)
 
 //OUTPUT:
 
-<br/>
-<b>Message:</b>
-should not have additional properties 'k' in foo
-<br/>
-<b>Message:</b>
-should have required property 'foo'
+<br/><b>Message:</b>should not have additional properties 'k' in foo
+<br/><b>Message:</b>should have required property 'foo'
 ```

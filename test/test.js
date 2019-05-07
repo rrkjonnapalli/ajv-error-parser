@@ -412,9 +412,8 @@ const errors = AJVErrorParser.parseErrors(
     ]
     , { 
         json: false
-        , delimiter:`
-<br/>
+        , delimiter:`<br/>
 <b>Message:</b>`
-     })
+     }).slice(6)+`<br/>`
 
 console.log(errors)
