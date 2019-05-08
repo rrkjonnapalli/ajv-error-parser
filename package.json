@@ -1,10 +1,10 @@
 {
   "name": "ajv-error-parser",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "A proper error message parser for ajv schema validator errors",
   "main": "ajv-error-parser.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "nyc mocha"
   },
   "author": "rrkjonnapalli",
   "license": "ISC",
@@ -25,5 +25,10 @@
   "bugs": {
     "url": "https://github.com/rrkjonnapalli/ajv-error-parser/issues"
   },
-  "homepage": "https://github.com/rrkjonnapalli/ajv-error-parser#readme"
+  "homepage": "https://github.com/rrkjonnapalli/ajv-error-parser#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.0"
+  }
 }

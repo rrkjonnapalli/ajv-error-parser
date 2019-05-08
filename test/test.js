@@ -1,6 +1,7 @@
 const AJVErrorParser = require('../')
-const errors = AJVErrorParser.parseErrors(
-    [{
+const should = require('chai').should();
+const errors = [
+    {
         keyword: 'additionalProperties',
         dataPath: '.foo',
         schemaPath: '#/oneOf/0/additionalProperties',
@@ -409,11 +410,48 @@ const errors = AJVErrorParser.parseErrors(
         parentSchema: { if: [Object], then: [Object], else: [Object] },
         data: { power: 40000 }
     }
-    ]
-    , { 
-        json: false
-        , delimiter:`<br/>
-<b>Message:</b>`
-     }).slice(6)+`<br/>`
+];
+describe('AJVErrorParser', () => {
+    it('should return proper error messages', (done) => {
+        const messages = AJVErrorParser.parseErrors(errors);
+        const result_messages = [
+            'should not have additional properties \'k\' in foo',
+            'should have required property \'foo\'',
+            'foo should be string',
+            'should match exactly one schema',
+            'dimensions.width should be <= 5',
+            'name should not be shorter than 3 characters',
+            'name should match pattern "[abc]+"',
+            'name should not be longer than 50 characters',
+            'price should be > 5',
+            'price should be multiple of 5',
+            'price should be < 5',
+            'date should match format "date"',
+            'tagNames should not have duplicate items (items ## 2 and 0 are identical)',
+            'tagNames should not have more than 3 items',
+            'tagNames should not have fewer than 2 items',
+            'tags[0].email should match format "email"',
+            'tags[0] should not have more than 2 properties',
+            'tags[0] should not have fewer than 5 properties',
+            'details should have properties bar, bz when property foo is present',
+            'color should be equal to one of the allowed values',
+            'voterAge is/are not valid',
+            'should match some schema',
+            'should contain a valid item',
+            'not valid',
+            'property name \'foo\' is invalid',
+            'bar should be equal to constant',
+            'should match "else" schema',
+            'should match "then" schema'
+        ];
+        messages.should.eql(result_messages);
+        done();
+    });
 
-console.log(errors)
+    it('should return a new line seperated error message', (done) => {
+        const messages = AJVErrorParser.parseErrors(errors, { json: false, slice:1 });
+        const result_messages = "should not have additional properties 'k' in foo\nshould have required property 'foo'\nfoo should be string\nshould match exactly one schema\ndimensions.width should be <= 5\nname should not be shorter than 3 characters\nname should match pattern \"[abc]+\"\nname should not be longer than 50 characters\nprice should be > 5\nprice should be multiple of 5\nprice should be < 5\ndate should match format \"date\"\ntagNames should not have duplicate items (items ## 2 and 0 are identical)\ntagNames should not have more than 3 items\ntagNames should not have fewer than 2 items\ntags[0].email should match format \"email\"\ntags[0] should not have more than 2 properties\ntags[0] should not have fewer than 5 properties\ndetails should have properties bar, bz when property foo is present\ncolor should be equal to one of the allowed values\nvoterAge is/are not valid\nshould match some schema\nshould contain a valid item\nnot valid\nproperty name 'foo' is invalid\nbar should be equal to constant\nshould match \"else\" schema\nshould match \"then\" schema";
+        messages.should.eql(result_messages);
+        done();
+    })
+});

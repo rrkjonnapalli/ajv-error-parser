@@ -77,11 +77,12 @@ var AJVErrorParser = {};
 
 AJVErrorParser.getAJVErrorMessage = getAJVErrorMessage;
 AJVErrorParser.parseErrors = function(errors, opts) {
-    if (!opts) {
+    if (!opts || opts.json === undefined) {
         opts = { json: true };
     }
     var json = opts.json;
     var delimiter = opts.delimiter || '\n';
+    var slice = opts.slice || 0;
     var messages = [];
     for (var idx = 0; idx < errors.length; idx++) {
         var error = errors[idx];
@@ -91,7 +92,7 @@ AJVErrorParser.parseErrors = function(errors, opts) {
         return messages;
     }
     var response = delimiter + messages.join(delimiter);
-    return response;
+    return response.slice(slice);
 };
 
 if (typeof module !== 'undefined' && module.exports) {
